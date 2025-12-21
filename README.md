@@ -1,20 +1,27 @@
 # Leaf App
 
-( ⚠️ _Planning to launch the app officially this Winter_ ) 
-
 A lightweight **macOS menu bar productivity utility** that helps you automatically manage inactive applications.  
 
 Built with **Swift**, **SwiftUI**, and **Xcode**, Leaf App improves focus and system performance by monitoring app activity in the background and closing unused apps based on user-defined preferences.
 
-Here's a demo:
+> [!IMPORTANT]
+> We don't have an Apple Developer account yet. The application will show a popup on first launch that the app is from an unidentified developer.
+> 1. Click **OK** to close the popup.
+> 2. Open **System Settings > Privacy & Security**.
+> 3. Scroll down and click **Open Anyway** next to the warning about the app.
+> 4. Confirm your choice if prompted.
+> 
+> You only need to do this once.
 
-https://github.com/user-attachments/assets/8f76df99-367b-422b-8fed-6f1e5f1a0c24
+## 📌 Requirements
 
-## Features
+- macOS 14.0 or later  
+- Xcode 15+
 
-- **Smart App Monitoring** – Uses `NSWorkspace` and `NSRunningApplication` APIs to track inactive apps.  
+## ⚡️ Features
+ 
 - **Optimized Performance** – Background service designed to use minimal memory and CPU.  
-- **Custom Inactivity Timers** – Configure how long apps can stay idle before being flagged to quit.  
+- **Custom Inactivity Timer** – Configure how long apps can stay idle before being flagged to quit.  
 - **Automatic Quit** – Optionally auto-quit inactive apps to keep your workspace clutter-free.  
 
 ## 🛠️ Tech Stack
@@ -26,10 +33,6 @@ https://github.com/user-attachments/assets/8f76df99-367b-422b-8fed-6f1e5f1a0c24
 - **Storage:** AppStorage  
 
 
-## 📌 Requirements
-
-- macOS 14.0 or later  
-- Xcode 15+
 
 ## 📬 Contact
 
