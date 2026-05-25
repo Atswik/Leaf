@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C17806542FC2988D0004AC39 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = C17806532FC2988D0004AC39 /* Sparkle */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C1E5E3AF2DB3E74F00DCFB89 /* Leaf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leaf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C17806542FC2988D0004AC39 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = Leaf;
 			packageProductDependencies = (
+				C17806532FC2988D0004AC39 /* Sparkle */,
 			);
 			productName = Leaf;
 			productReference = C1E5E3AF2DB3E74F00DCFB89 /* Leaf.app */;
@@ -91,7 +97,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					C1E5E3AE2DB3E74F00DCFB89 = {
 						CreatedOnToolsVersion = 16.3;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = C1E5E3A62DB3E74F00DCFB89;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C17806522FC2988D0004AC39 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C1E5E3B02DB3E74F00DCFB89 /* Products */;
 			projectDirPath = "";
@@ -198,6 +207,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -256,6 +266,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -279,6 +290,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Leaf;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Satwik Tungala. \nAll rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -312,6 +324,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Leaf;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Satwik Tungala. \nAll rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -348,6 +361,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C17806522FC2988D0004AC39 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C17806532FC2988D0004AC39 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C17806522FC2988D0004AC39 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C1E5E3A72DB3E74F00DCFB89 /* Project object */;
 }

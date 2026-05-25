@@ -3,7 +3,7 @@ import SwiftUI
 
 struct MenuView: View {
     
-    var tracker: Tracker = Tracker()
+    var tracker: Tracker
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -18,7 +18,7 @@ struct MenuView: View {
                             .imageScale(.large)
                             .foregroundStyle(.green)
                         VStack {
-                            Text("No apps to track")
+                            Text("No active apps")
                         }
                     }
                 }
@@ -26,12 +26,13 @@ struct MenuView: View {
             .padding(5)
             
             Divider()
+                .padding(0.5)
             
             ButtonsView()
                 .padding(.bottom, 1.5)
         }
         .frame(width: 230)
-        .padding(5)
+        .padding(6)
         .onAppear {
             tracker.refreshApps()
         }
@@ -86,7 +87,8 @@ struct ButtonsView: View {
         case settings
         case quit
     }
-
+    
+    @Environment(\.openSettings) private var openSettings
     @State private var hoveredButton: HoverOver? = nil
     
     var body: some View {
@@ -97,6 +99,8 @@ struct ButtonsView: View {
             Group {
                 Button {
                     openSettings()
+                    NSApp.setActivationPolicy(.regular)
+                    NSApp.activate(ignoringOtherApps: true)
                 } label: {
                     Text("Settings")
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -106,10 +110,10 @@ struct ButtonsView: View {
                         .background(
                             Group {
                                 if hoveredButton == .settings {
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(Color.blue.opacity(0.7))
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.blue.opacity(0.8))
                                 } else {
-                                    RoundedRectangle(cornerRadius: 4)
+                                    RoundedRectangle(cornerRadius: 8)
                                         .fill(Color.clear)
                                 }
                             }
@@ -134,10 +138,10 @@ struct ButtonsView: View {
                         .background(
                             Group {
                                 if hoveredButton == .quit {
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(Color.blue.opacity(0.7))
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.blue.opacity(0.8))
                                 } else {
-                                    RoundedRectangle(cornerRadius: 4)
+                                    RoundedRectangle(cornerRadius: 8)
                                         .fill(Color.clear)
                                 }
                             }
@@ -149,12 +153,5 @@ struct ButtonsView: View {
                 }
             }
         }
-    }
-    
-    func openSettings() {
-        let environment = EnvironmentValues()
-        environment.openSettings()
-        NSApp.setActivationPolicy(.regular)
-        NSApp.activate()
     }
 }
