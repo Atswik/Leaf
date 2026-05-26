@@ -7,13 +7,20 @@ Built with **Swift**, **SwiftUI**, and **Xcode**, Leaf App improves focus and sy
 ## 📌 Requirements
 
 - macOS 14.0 or later  
-- Xcode 15+
+- Xcode 15+ (for building from source)
+
+## ↓ Download & Installation
+
+You can grab the latest compiled release directly from [satwiktungala.com/apps/leaf](https://satwiktungala.com/apps/leaf) or download the `.dmg` from the **[Releases](https://github.com/Atswik/Leaf/releases)** tab.
 
 ## ⚡️ Features
- 
-- **Optimized Performance** – Background service designed to use minimal memory and CPU.  
+
+- **Memory Pressure Monitoring** – Actively watches your system's memory state and identifies hidden background apps hoarding RAM.
+- **Safe Quit** – Sends standard native termination requests (`Cmd + Q`) rather than force-killing processes, ensuring target apps still prompt you to save unsaved work.
+- **Zero Data Collection** – 100% local processing with absolutely no telemetry or tracking.
+- **Optimized Performance** – Background service designed to use minimal memory and CPU.
+- **Optimized for Apple Silicon** – Lightweight background footprint designed specifically for modern Mac architectures.
 - **Custom Inactivity Timer** – Configure how long apps can stay idle before being flagged to quit.  
-- **Automatic Quit** – Optionally auto-quit inactive apps to keep your workspace clutter-free.  
 
 ## 🛠️ Tech Stack
 
@@ -21,11 +28,12 @@ Built with **Swift**, **SwiftUI**, and **Xcode**, Leaf App improves focus and sy
 - **UI Framework:** SwiftUI  
 - **IDE:** Xcode  
 - **APIs:** NSWorkspace, NSRunningApplication  
-- **Storage:** AppStorage  
+- **Storage:** AppStorage
+- **Updates:** Sparkle 2
 
 
 
 ## 📬 Contact
 
-Have questions or ideas? Reach out or connect via GitHub!
+Built in public by [Satwik](https://satwiktungala.com). Have questions, feedback, or feature ideas? Reach out on X or open an issue right here on GitHub!
 
