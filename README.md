@@ -35,5 +35,7 @@ You can grab the latest compiled release directly from [satwiktungala.com/apps/l
 
 ## 📬 Contact
 
-Built in public by [Satwik](https://satwiktungala.com). Have questions, feedback, or feature ideas? Reach out on X or open an issue right here on GitHub!
+Built in public by [Satwik](https://satwiktungala.com). 
+
+Have questions, feedback, or feature ideas? Reach out on X or open an issue right here on GitHub!
 
