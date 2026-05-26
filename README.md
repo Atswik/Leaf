@@ -11,7 +11,7 @@ Built with **Swift**, **SwiftUI**, and **Xcode**, Leaf App improves focus and sy
 
 ## ↓ Download & Installation
 
-You can grab the latest compiled release directly from [satwiktungala.com/apps/leaf](https://satwiktungala.com/apps/leaf) or download the `.dmg` from the **[Releases](https://github.com/Atswik/Leaf/releases)** tab.
+You can grab the latest compiled release directly from [satwiktungala.com/apps/leaf](https://satwiktungala.com/apps) or download the `.dmg` from the **[Releases](https://github.com/Atswik/Leaf/releases)** tab.
 
 ## ⚡️ Features
 
