@@ -179,7 +179,7 @@ import SwiftUI
         }
     }
     
-    private func getMemoryUsageMap() -> [Int32: Double] {
+    private func getMemoryUsageMap() -> [Int32: Double]? {
         let task = Process()
         let pipe = Pipe()
         
@@ -187,27 +187,35 @@ import SwiftUI
         task.arguments = ["-e", "-o", "pid=,rss="]
         task.standardOutput = pipe
         
-        var memoryMap: [Int32: Double] = [:]
-        
         do {
             try task.run()
             let data = try pipe.fileHandleForReading.readToEnd() ?? Data()
+            task.waitUntilExit()
             
-            if let output = String(data: data, encoding: .utf8) {
-                let lines = output.components(separatedBy: .newlines)
-                for line in lines {
-                    let parts = line.split(separator: " ", omittingEmptySubsequences: true)
-                    if parts.count == 2, let pid = Int32(parts[0]), let rssKB = Double(parts[1]) {
-                        
-                        memoryMap[pid] = rssKB / 1024.0
-                    }
+            guard task.terminationStatus == 0 else {
+                return nil
+            }
+            
+            guard let output = String(data: data, encoding: .utf8) else {
+                return nil
+            }
+            
+            var memoryMap: [Int32: Double] = [:]
+            
+            for line in output.components(separatedBy: .newlines) {
+                let parts = line.split(separator: " ", omittingEmptySubsequences: true)
+                if parts.count == 2,
+                   let pid = Int32(parts[0]),
+                   let rssKB = Double(parts[1]) {
+                    memoryMap[pid] = rssKB / 1024.0
                 }
             }
+            
+            return memoryMap.isEmpty ? nil : memoryMap
         } catch {
             print("Leaf: Failed to fetch memory map - \(error)")
+            return nil
         }
-        
-        return memoryMap
     }
     
     private func trackAndTerminate() {
@@ -219,17 +227,19 @@ import SwiftUI
             }
         }
         
-        let currentMemoryMap = smartAlerts ? getMemoryUsageMap() : [:]
+        let currentMemoryMap = smartAlerts ? getMemoryUsageMap() : nil
+        let memoryLookupFailed = smartAlerts && currentMemoryMap == nil
         
-        var notificationGuys: [(app: NSRunningApplication, idleTime: TimeInterval)] = []
+        
+        var notificationGuys: [(app: NSRunningApplication, idleTime: TimeInterval, memoryUsage: Double)] = []
         
         for (app, lastTime) in runningApps {
             if !app.isActive {
                 let idleTime = now - lastTime
                 print("\(app.localizedName ?? "Unknown"): \(idleTime)")
                 
-                let appMemoryUsage = currentMemoryMap[app.processIdentifier] ?? 0.0
-                let isMemoryConsuming = !smartAlerts || (appMemoryUsage >= memoryThresholdMB)
+                let appMemoryUsage = currentMemoryMap?[app.processIdentifier] ?? 0.0
+                let isMemoryConsuming = !smartAlerts || memoryLookupFailed || (appMemoryUsage >= memoryThresholdMB)
                 
                 if idleTime > TimeInterval(closingTime * 60) &&
                     !notifiedApps.contains(app.bundleIdentifier ?? "") &&
@@ -238,7 +248,7 @@ import SwiftUI
                     if quitWithoutNotify {
                         quitApp(appID: app.processIdentifier)
                     } else {
-                        notificationGuys.append((app, idleTime))
+                        notificationGuys.append((app, idleTime, appMemoryUsage))
                     }
                 }
             }
@@ -246,14 +256,24 @@ import SwiftUI
         
         // Rate-limiting notifications
         if !notificationGuys.isEmpty {
-            let sortedGuys = notificationGuys.sorted { $0.idleTime > $1.idleTime }
+            let sortedGuys = notificationGuys.sorted {
+                if smartAlerts && !memoryLookupFailed && $0.memoryUsage != $1.memoryUsage {
+                    return $0.memoryUsage > $1.memoryUsage
+                }
+                
+                return $0.idleTime > $1.idleTime
+            }
             
             if let primaryGuy = sortedGuys.first {
-                sendNotification(app: primaryGuy.app)
-                notifiedApps.insert(primaryGuy.app.bundleIdentifier ?? "shit-happens")
+                sendNotification(app: primaryGuy.app) { [weak self] success in
+                    guard success else { return }
+                    
+                    DispatchQueue.main.async {
+                        self?.notifiedApps.insert(primaryGuy.app.bundleIdentifier ?? "unknown")
+                    }
+                }
             }
         }
-
         
         /// OLD LOGIC
         
@@ -275,7 +295,7 @@ import SwiftUI
 //        }
     }
     
-    private func sendNotification(app: NSRunningApplication) {
+    private func sendNotification(app: NSRunningApplication, completion: @escaping (Bool) -> Void) {
         let content = UNMutableNotificationContent()
         content.title = "Want me to quit \(app.localizedName ?? "an unknown app")?"
         content.sound = .default
@@ -296,8 +316,11 @@ import SwiftUI
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
         
         UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
+            if let error {
                 print("\(error)")
+                completion(false)
+            } else {
+                completion(true)
             }
         }
     }
@@ -394,6 +417,7 @@ import SwiftUI
         }
     }
     
+    
     internal func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         if response.actionIdentifier == "QUIT_APP" {
@@ -403,5 +427,13 @@ import SwiftUI
         }
         
         completionHandler()
+    }
+    
+    internal func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .list, .sound])
     }
 }
