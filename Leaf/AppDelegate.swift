@@ -1,11 +1,26 @@
 
 import Cocoa
 import SwiftUI
+import Sparkle
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     static var shared: AppDelegate!
     var tracker = Tracker()
+    
+    let sparkleDelegate = SparkleDelegate()
+    var updateController: SPUStandardUpdaterController
+    
+    var updater: SPUUpdater { updateController.updater }
+    
+    override init() {
+        self.updateController = SPUStandardUpdaterController(
+            startingUpdater: true,
+            updaterDelegate: nil,
+            userDriverDelegate: sparkleDelegate
+        )
+        super.init()
+    }
     
     var isFirstLaunch: Bool {
         get { UserDefaults.standard.object(forKey: "isFirstLaunch") == nil
@@ -18,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.shared = self
+        
         if isFirstLaunch {
             AppDelegate.showOnboarding()
         } else {

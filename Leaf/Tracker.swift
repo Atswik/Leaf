@@ -5,14 +5,20 @@ import SwiftUI
 @Observable class Tracker: NSObject, UNUserNotificationCenterDelegate {
     
     var runningApps: [NSRunningApplication : TimeInterval] = [:]
-//    var currentMemoryMap: [Int32: Double] = [:]
-    
-    var nonNotifyApps: [String : Bool] = [:]
     
     @AppStorage("smartAlerts") @ObservationIgnored private var smartAlerts: Bool = true
     @AppStorage("closingTime") @ObservationIgnored private var closingTime: Int = 15
     @AppStorage("quitWithoutNotify") @ObservationIgnored private var quitWithoutNotify: Bool = false
     @AppStorage("goingToSleep") @ObservationIgnored private var goingToSleep: Bool = false
+    @AppStorage("nonNotifyApps") @ObservationIgnored private var nonNotifyAppsData: Data = Data()
+    
+    var nonNotifyApps: [String : Bool] = [:] {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(nonNotifyApps) {
+                nonNotifyAppsData = encoded
+            }
+        }
+    }
     
     @ObservationIgnored private let memoryThresholdMB: Double = 200.0
     @ObservationIgnored private var sleepStartTime: Date = Date()
@@ -22,6 +28,9 @@ import SwiftUI
     
     override init() {
         super.init()
+        if let saved = try? JSONDecoder().decode([String: Bool].self, from:nonNotifyAppsData) {
+            nonNotifyApps = saved
+        }
         UNUserNotificationCenter.current().delegate = self
     }
     
@@ -43,7 +52,6 @@ import SwiftUI
                 self.refreshApps()
             }
         })
-        
     }
  
     func quitApp(appID: Int32) {
@@ -166,17 +174,24 @@ import SwiftUI
     
     internal func toggleNotifications(app: String) {
         
-        if nonNotifyApps[app] == false {
-            DispatchQueue.main.async {
-                self.nonNotifyApps[app] = true
-            }
+        DispatchQueue.main.async {
+            let current = self.nonNotifyApps[app] ?? false
+            self.nonNotifyApps[app] = !current
         }
         
-        if nonNotifyApps[app] == true {
-            DispatchQueue.main.async {
-                self.nonNotifyApps[app] = false
-            }
-        }
+// MARK: OLD LOGIC
+//        if nonNotifyApps[app] == false {
+//            DispatchQueue.main.async {
+//                self.nonNotifyApps[app] = true
+//            }
+//        }
+//        
+//        if nonNotifyApps[app] == true {
+//            DispatchQueue.main.async {
+//                self.nonNotifyApps[app] = false
+//            }
+//        }
+        
     }
     
     private func getMemoryUsageMap() -> [Int32: Double]? {
@@ -275,7 +290,7 @@ import SwiftUI
             }
         }
         
-        /// OLD LOGIC
+        // MARK: OLD LOGIC
         
 //        for (app, _) in runningApps {
 //            if app.isActive {
@@ -423,6 +438,12 @@ import SwiftUI
         if response.actionIdentifier == "QUIT_APP" {
             if let appID = response.notification.request.content.userInfo["appID"] as? Int32 {
                 quitApp(appID: appID)
+            }
+        }
+        
+        if response.notification.request.identifier == "LEAF_UPDATE", response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            DispatchQueue.main.async {
+                NSApp.activate(ignoringOtherApps: true)
             }
         }
         
