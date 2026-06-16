@@ -4,25 +4,45 @@ A lightweight **macOS menu bar productivity utility** that helps you automatical
 
 Built with **Swift**, **SwiftUI**, and **Xcode**, Leaf App improves focus and system performance by monitoring app activity in the background and closing unused apps based on user-defined preferences.
 
-## 📌 Requirements
+<p align="center">
+  <img width="128" height="128" alt="leaf_256x256" src="https://github.com/user-attachments/assets/9bf73867-7be3-4b16-a5fd-ff204afb2fdf" />
+  <br />
+  <strong>Version: </strong>1.2
+  <br />
+  Requires macOS 14 or later.
+  <br />
+  <a href="https://github.com/Atswik/Leaf/releases/download/v1.2/Leaf_1.2.dmg"><strong>Download</strong></a>
+  ·
+  <a href="https://github.com/Atswik/Leaf/releases">Releases</a>
+</p>
 
-- macOS 14.0 or later  
-- Xcode 15+ (for building from source)
+<div align="center">
+  <img width="500" alt="leaf_notification" src="https://github.com/user-attachments/assets/b1f829a0-86b1-42f2-a828-597de061ab62" />
+  <p>Notifies you to quit inactive apps using memory</p>
+  <br />
+  <img width="500" alt="leaf_settings" src="https://github.com/user-attachments/assets/6c138bb4-2094-49f1-a733-f45f9e09fdf2" />
+  <p>Settings to help you customize</p>
+</div>
 
-## ↓ Download & Installation
+## How it Works
 
-You can grab the latest compiled release directly from [satwiktungala.com/apps/leaf](https://satwiktungala.com/apps) or download the `.dmg` from the **[Releases](https://github.com/Atswik/Leaf/releases)** tab.
+Leaf watches which apps are running in the background and tracks when you last used them. 
 
-## ⚡️ Features
+When an app has been idle past your configured threshold and is consuming meaningful memory, Leaf sends a notification asking if you want to quit it. You can then decide to quit by pressing "Quit" button directly from the notification.
 
-- **Memory Pressure Monitoring** – Actively watches your system's memory state and identifies hidden background apps hoarding RAM.
-- **Safe Quit** – Sends standard native termination requests (`Cmd + Q`) rather than force-killing processes, ensuring target apps still prompt you to save unsaved work.
-- **Zero Data Collection** – 100% local processing with absolutely no telemetry or tracking.
-- **Optimized Performance** – Background service designed to use minimal memory and CPU.
-- **Optimized for Apple Silicon** – Lightweight background footprint designed specifically for modern Mac architectures.
-- **Custom Inactivity Timer** – Configure how long apps can stay idle before being flagged to quit.  
+Leaf never quits anything automatically unless you enable that option in the Settings.
 
-## 🛠️ Tech Stack
+## Building from source
+
+```bash
+git clone https://github.com/Atswik/Leaf.git
+cd Leaf
+open Leaf.xcodeproj
+```
+
+Requires Xcode 16+. Dependencies are managed via Swift Package Manager and resolve automatically on first build.
+
+## Tech Stack
 
 - **Language:** Swift  
 - **UI Framework:** SwiftUI  
@@ -31,11 +51,9 @@ You can grab the latest compiled release directly from [satwiktungala.com/apps/l
 - **Storage:** AppStorage
 - **Updates:** Sparkle 2
 
-
-
 ## 📬 Contact
 
-Built in public by [Satwik](https://satwiktungala.com). 
+Built by [Satwik](https://satwiktungala.com). 
 
-Have questions, feedback, or feature ideas? Reach out on X or open an issue right here on GitHub!
+Have questions, feedback, or feature ideas? Reach out on [X](https://x.com/satwxyz) (Twitter) or open an issue right here on GitHub!
 
