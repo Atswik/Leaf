@@ -91,7 +91,7 @@ struct SettingsView: View {
                     
                     Text("Developed by")
                         .font(.system(size: 11))
-                    Link("Satwik", destination: URL(string: "https://x.com/satwxyz")!)
+                    Link("Satwik", destination: URL(string: "https://satwiktungala.com")!)
                         .padding(1)
                         .font(.system(size: 11))
                     Text("👾")
@@ -134,28 +134,24 @@ struct StepperView: View {
         5 : "5 mins",
         10 : "10 mins",
         15 : "15 mins",
+        23 : "23 mins",
         30 : "30 mins",
         60 : "1 hour",
         120 : "2 hours",
         240 : "4 hours"
     ]
 
-    func incrementStep() {
-        if closingTime < 15 {
-            closingTime += 5
-        } else {
-            closingTime *= 2
-        }
-        if closingTime > 240 { closingTime = 5 }
-    }
+    private func moveStep(by offset: Int) {
+        let values = options.keys.sorted()
+        guard !values.isEmpty else { return }
 
-    func decrementStep() {
-        if closingTime <= 15 {
-            closingTime -= 5
-        } else {
-            closingTime /= 2
+        guard let currentIndex = values.firstIndex(of: closingTime) else {
+            closingTime = values[0]
+            return
         }
-        if closingTime < 5 { closingTime = 240 }
+
+        let nextIndex = (currentIndex + offset + values.count) % values.count
+        closingTime = values[nextIndex]
     }
 
     var body: some View {
@@ -174,9 +170,9 @@ struct StepperView: View {
                 }
                 
             } onIncrement: {
-                incrementStep()
+                moveStep(by: 1)
             } onDecrement: {
-                decrementStep()
+                moveStep(by: -1)
             }
             
             Text("Of Idle Time")
@@ -187,4 +183,3 @@ struct StepperView: View {
         .foregroundStyle(colorScheme == .dark ? Color.primary : Color.black.opacity(0.75))
     }
 }
-

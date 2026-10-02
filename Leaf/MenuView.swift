@@ -10,7 +10,7 @@ struct MenuView: View {
             VStack(alignment: .leading) {
                 if tracker.runningApps.count > 0 {
                     ForEach(Array(tracker.runningApps), id: \.key) { app in
-                        AppView(app: app, tracker: tracker, notifyOrNot: tracker.nonNotifyApps[app.key.bundleIdentifier ?? ""] ?? true)
+                        AppView(app: app, tracker: tracker, notifyOrNot: tracker.nonNotifyApps[app.key.bundleIdentifier ?? ""] ?? false)
                     }
                 } else {
                     HStack {

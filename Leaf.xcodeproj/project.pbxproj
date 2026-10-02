@@ -8,9 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		C17806542FC2988D0004AC39 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = C17806532FC2988D0004AC39 /* Sparkle */; };
+		C1A100012FC300000004AC39 /* AudioActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A100022FC300000004AC39 /* AudioActivityTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C1A100032FC300000004AC39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1E5E3A72DB3E74F00DCFB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1E5E3AE2DB3E74F00DCFB89;
+			remoteInfo = Leaf;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		C1A100022FC300000004AC39 /* AudioActivityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioActivityTests.swift; sourceTree = "<group>"; };
+		C1A100042FC300000004AC39 /* LeafTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeafTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E5E3AF2DB3E74F00DCFB89 /* Leaf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leaf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -36,6 +49,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C1A100092FC300000004AC39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1E5E3AC2DB3E74F00DCFB89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,10 +67,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1A100052FC300000004AC39 /* LeafTests */ = {
+			isa = PBXGroup;
+			children = (
+				C1A100022FC300000004AC39 /* AudioActivityTests.swift */,
+			);
+			path = LeafTests;
+			sourceTree = "<group>";
+		};
 		C1E5E3A62DB3E74F00DCFB89 = {
 			isa = PBXGroup;
 			children = (
 				C1E5E3B12DB3E74F00DCFB89 /* Leaf */,
+				C1A100052FC300000004AC39 /* LeafTests */,
 				C1E5E3B02DB3E74F00DCFB89 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				C1E5E3AF2DB3E74F00DCFB89 /* Leaf.app */,
+				C1A100042FC300000004AC39 /* LeafTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,6 +96,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C1A100062FC300000004AC39 /* LeafTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1A100072FC300000004AC39 /* Build configuration list for PBXNativeTarget "LeafTests" */;
+			buildPhases = (
+				C1A100082FC300000004AC39 /* Sources */,
+				C1A100092FC300000004AC39 /* Frameworks */,
+				C1A1000A2FC300000004AC39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1A1000B2FC300000004AC39 /* PBXTargetDependency */,
+			);
+			name = LeafTests;
+			productName = LeafTests;
+			productReference = C1A100042FC300000004AC39 /* LeafTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C1E5E3AE2DB3E74F00DCFB89 /* Leaf */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1E5E3BB2DB3E75100DCFB89 /* Build configuration list for PBXNativeTarget "Leaf" */;
@@ -122,11 +170,19 @@
 			projectRoot = "";
 			targets = (
 				C1E5E3AE2DB3E74F00DCFB89 /* Leaf */,
+				C1A100062FC300000004AC39 /* LeafTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C1A1000A2FC300000004AC39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1E5E3AD2DB3E74F00DCFB89 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,6 +193,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C1A100082FC300000004AC39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1A100012FC300000004AC39 /* AudioActivityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1E5E3AB2DB3E74F00DCFB89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,7 +210,43 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C1A1000B2FC300000004AC39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1E5E3AE2DB3E74F00DCFB89 /* Leaf */;
+			targetProxy = C1A100032FC300000004AC39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		C1A1000C2FC300000004AC39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.satwik.LeafTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Leaf.app/Contents/MacOS/Leaf";
+				TEST_TARGET_NAME = Leaf;
+			};
+			name = Debug;
+		};
+		C1A1000D2FC300000004AC39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.satwik.LeafTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Leaf.app/Contents/MacOS/Leaf";
+				TEST_TARGET_NAME = Leaf;
+			};
+			name = Release;
+		};
 		C1E5E3B92DB3E75100DCFB89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -280,7 +380,7 @@
 				CODE_SIGN_ENTITLEMENTS = Leaf/Leaf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TVDF2X8GJ4;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -296,7 +396,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.satwik.Leaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -314,7 +414,7 @@
 				CODE_SIGN_ENTITLEMENTS = Leaf/Leaf.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = TVDF2X8GJ4;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -330,7 +430,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.satwik.Leaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -342,6 +442,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C1A100072FC300000004AC39 /* Build configuration list for PBXNativeTarget "LeafTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A1000C2FC300000004AC39 /* Debug */,
+				C1A1000D2FC300000004AC39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C1E5E3AA2DB3E74F00DCFB89 /* Build configuration list for PBXProject "Leaf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

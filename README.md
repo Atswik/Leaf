@@ -7,11 +7,11 @@ Built with **Swift**, **SwiftUI**, and **Xcode**, Leaf App improves focus and sy
 <p align="center">
   <img width="128" height="128" alt="leaf_256x256" src="https://github.com/user-attachments/assets/9bf73867-7be3-4b16-a5fd-ff204afb2fdf" />
   <br />
-  <strong>Version: </strong>1.2
+  <strong>Version: </strong>1.3
   <br />
   Requires macOS 14 or later.
   <br />
-  <a href="https://github.com/Atswik/Leaf/releases/download/v1.2/Leaf_1.2.dmg"><strong>Download</strong></a>
+  <a href="https://github.com/Atswik/Leaf/releases/download/v1.3/Leaf_1.3.dmg"><strong>Download</strong></a>
   ·
   <a href="https://github.com/Atswik/Leaf/releases">Releases</a>
 </p>
